@@ -7,10 +7,13 @@ export default class Navbar extends React.Component {
     return (
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/'>/</Link>
         </li>
         <li>
-          <Link to='/share'>Share</Link>
+          <Link to='/shard'>Shard</Link>
+        </li>
+        <li>
+          <Link to='/revive'>Revive</Link>
         </li>
       </ul>
     )
