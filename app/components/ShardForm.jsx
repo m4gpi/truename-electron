@@ -1,20 +1,17 @@
 'use babel'
 import React from 'react'
-import { isNumber, shardSoul } from '../actions/horcrux'
-import Shard from '../components/Shard'
+import { isNumber } from '../actions/horcrux'
 
-export default class ShardPage extends React.Component {
+export default class Shard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       shardQuantity: null,
       quorum: null,
       soul: '',
-      shards: [],
-      frozen: false
+
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleShardQuantityChange = this.handleShardQuantityChange.bind(this)
     this.handleQuorumChange = this.handleQuorumChange.bind(this)
     this.handleSoulChange = this.handleSoulChange.bind(this)
@@ -53,20 +50,8 @@ export default class ShardPage extends React.Component {
     this.setState({ soul: event.target.value })
     if (this.readyToSubmit()) this.handleSubmit(event)
   }
-
-  handleSubmit(event) {
-    var shards = shardSoul(this.state.soul, this.state.shardQuantity, this.state.quorum)
-    this.setState({ shards: shards })
-  }
-
-  render() {
-    const shards = this.state.shards.map((shard, index) => {
-      return <Shard key={ index } content={ shard } />
-    })
-    const frozen = this.state.frozen ? <h3>Frozen</h3> : ''
+  render () {
     return (
-      <div>
-        <h1>Shard</h1>
         <form>
           <div>
             <label htmlFor="shardQuantity">How many shards of your soul?</label>
@@ -83,10 +68,6 @@ export default class ShardPage extends React.Component {
           <button onClick={ this.freezeSoul }>Freeze</button>
           { frozen }
         </form>
-        <div className="shards">
-          { shards }
-        </div>
-      </div>
     )
   }
 }

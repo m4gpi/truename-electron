@@ -3,6 +3,8 @@ import reload from 'electron-reload'
 import path from 'path'
 import url from 'url'
 
+// require('electron-react-devtools').install()
+
 let mainWindow
 
 function createWindow () {
