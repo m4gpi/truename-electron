@@ -1,0 +1,99 @@
+@import "../../node_modules/font-awesome/less/icons.less";
+
+@font-face {
+  font-family: 'bu-glenda';
+  src: local('fonts/bu_glenda.tff') format("truetype");
+}
+
+@font-face {
+  font-family: 'Pompiere';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pompiere '), local('Pompiere-Regular'), url(https://fonts.gstatic.com/s/pompiere/v6/mwrKIrrwFdsa6WVUljlH1vesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+html {
+  background: url('../images/earthsea_map.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
+}
+
+.appContainer {
+  background:rgba(255,255,255,0.5);
+  width: 100%;
+  height:100vh;
+}
+
+.box {
+  background:rgb(0,128,128);
+  height: 200px;
+  width: 200px;
+  margin: 50px;
+  display: inline-block;
+  border: 2px solid white;
+}
+
+.backBar {
+  width: 100%;
+  padding: 10px;
+  background:rgb(0,128,128);
+  border-bottom: 2px solid white;
+}
+/* $midnight: #000022; */
+/* $dark: #282828; */
+/* $white: #FFFFFF; */
+
+/* Aspalt: #34495e */
+/* Pomegranate: #c0392b */
+
+/* html{ */
+/*   min-height: 100vh; */
+/* } */
+
+/* body{ */
+/*   min-height: 100vh; */
+/*   background: #C0392B; */
+/*   color: #FFFFFF; */
+/* } */
+
+/* nav.primary { */
+/*   height: 54px; */
+/*   background: #282828; */
+/*   border-bottom: 2px solid #FFFFFF; */
+/*   margin-bottom: 50px; */
+/* } */
+
+/* nav.primary > ul { */
+/*   list-style: none; */
+/*   display: flex; */
+/* } */
+
+/* nav.primary > ul > a { */
+/*   text-decoration: none; */
+/*   color: white; */
+/* } */
+
+/* nav.primary > ul > a:hover { */
+/*   color: #FFFFFF; */
+/* } */
+
+/* nav.primary > ul > a:hover > li { */
+/*   background: #C0392B; */
+/* } */
+
+/* nav.primary > ul > a > li { */
+/*   margin: 0; */
+/*   padding: 15px 10px 15px 10px; */
+/*   display: inline-block; */
+/*   list-style-type: none; */
+/* } */
+
+/* .logo { */
+/*   height: 400px; */
+/* } */

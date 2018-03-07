@@ -1,90 +1,74 @@
 'use babel'
 import React from 'react'
-import { isNumber, shardSoul } from '../actions/horcrux'
-import Shard from '../components/Shard'
+import { isNumber, splitTrueName } from '../actions/truename'
+import Piece from '../components/Piece'
+import Form from '../components/helpers/Form'
+import Input from '../components/helpers/Input'
+import Button from '../components/helpers/Button'
 
-export default class ShardPage extends React.Component {
+export default class PiecePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      shardQuantity: null,
+      pieceQuantity: null,
       quorum: null,
-      soul: '',
-      shards: [],
+      trueName: '',
+      pieces: [],
       frozen: false
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleShardQuantityChange = this.handleShardQuantityChange.bind(this)
-    this.handleQuorumChange = this.handleQuorumChange.bind(this)
-    this.handleSoulChange = this.handleSoulChange.bind(this)
-    this.freezeSoul = this.freezeSoul.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.freezeTrueName = this.freezeTrueName.bind(this)
   }
 
-  validateForm() {
-    return (isNumber(this.state.shardQuantity) &&
-      isNumber(this.state.quorum) &&
-      this.state.soul.length > 0)
+  validateForm(state) {
+    return (isNumber(state.pieceQuantity) &&
+      isNumber(state.quorum) &&
+      state.trueName.length > 0)
   }
 
-  readyToSubmit() {
-    return this.validateForm() && !this.state.frozen
+  readyToSubmit(state) {
+    return this.validateForm(state) && !state.frozen
   }
 
-  freezeSoul(event) {
+  freezeTrueName(event) {
     event.preventDefault()
-    this.setState({frozen: !this.state.frozen})
-    if (this.validateForm()) this.handleSubmit(event)
+    var nextState = this.state
+    nextState['frozen'] = !nextState.frozen
+    this.setState(nextState)
+    if (this.readyToSubmit(nextState)) this.splitTrueName(nextState)
   }
 
-  handleShardQuantityChange(event) {
-    var value = event.target.value
-    if (isNumber(value)) this.setState({ shardQuantity: value })
-    if (this.readyToSubmit()) this.handleSubmit(event)
+  splitTrueName(state) {
+    var pieces = splitTrueName(state.trueName, state.pieceQuantity, state.quorum)
+    this.setState({ pieces: pieces })
   }
 
-  handleQuorumChange(event) {
-    var value = event.target.value
-    if (isNumber(value)) this.setState({ quorum: value })
-    if (this.readyToSubmit()) this.handleSubmit(event)
-  }
-
-  handleSoulChange(event) {
-    this.setState({ soul: event.target.value })
-    if (this.readyToSubmit()) this.handleSubmit(event)
-  }
-
-  handleSubmit(event) {
-    var shards = shardSoul(this.state.soul, this.state.shardQuantity, this.state.quorum)
-    this.setState({ shards: shards })
+  handleChange(event) {
+    var nextState = this.state
+    var key = event.target.name
+    nextState[key] = event.target.value
+    this.setState(nextState)
+    if (this.readyToSubmit(nextState)) this.splitTrueName(nextState)
   }
 
   render() {
-    const shards = this.state.shards.map((shard, index) => {
-      return <Shard key={ index } content={ shard } />
+    const pieces = this.state.pieces.map((piece, index) => {
+      return <Piece key={ index } content={ piece } />
     })
     const frozen = this.state.frozen ? <h3>Frozen</h3> : ''
     return (
       <div>
-        <h1>Shard</h1>
-        <form>
-          <div>
-            <label htmlFor="shardQuantity">How many shards of your soul?</label>
-            <input onChange={ this.handleShardQuantityChange } type="number" name="shardQuantity"/>
-          </div>
-          <div>
-            <label htmlFor="quorum">Pieces required to revive?</label>
-            <input onChange={ this.handleQuorumChange } type="number" name="quorum"/>
-          </div>
-          <div>
-            <label htmlFor="soul">Your soul...</label>
-            <input onChange={ this.handleSoulChange } type="text" name="soul" required/>
-          </div>
-          <button onClick={ this.freezeSoul }>Freeze</button>
-          { frozen }
-        </form>
-        <div className="shards">
-          { shards }
+        <p>Split your True Name into pieces and give them out to your allies</p>
+        <Form>
+          <Input name="pieceQuantity" type="number" onChange={ this.handleChange } label="How many pieces of your True Name?" />
+          <Input name="quorum" type="number" onChange={ this.handleChange } label="Pieces required to reassemble" />
+          <Input name="trueName" type="text" onChange={ this.handleChange } label="Your True Name..." />
+          <Button onClick={ this.freezeTrueName } label="Freeze" />
+        </Form>
+        { frozen }
+        <div className="pieces">
+          { pieces }
         </div>
       </div>
     )

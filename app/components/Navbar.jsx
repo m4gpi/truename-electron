@@ -3,19 +3,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
-      <ul>
-        <li>
-          <Link to='/'>/</Link>
-        </li>
-        <li>
-          <Link to='/shard'>Shard</Link>
-        </li>
-        <li>
-          <Link to='/revive'>Revive</Link>
-        </li>
-      </ul>
+      <div className="row">
+        <Link onClick={ this.props.appendPath } to='/shard'>
+          <div className='box'><h3>Shard</h3></div>
+        </Link>
+        <Link onClick={ this.props.appendPath } to='/revive'>
+          <div className='box'><h3>Revive</h3></div>
+        </Link>
+      </div>
     )
   }
 }

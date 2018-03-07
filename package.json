@@ -1,9 +1,9 @@
 {
-  "name": "horcrux",
+  "name": "True Name",
   "version": "0.1.0",
   "main": "main.js",
   "license": "MIT",
-  "repository": "tenthousandthings/horcrux",
+  "repository": "tenthousandthings/truename",
   "scripts": {
     "start": "electron -r babel-register ."
   },
@@ -19,6 +19,7 @@
   "devDependencies": {
     "electron": "^1.4.3",
     "electron-react-devtools": "^0.5.3",
-    "electron-reload": "^1.2.2"
+    "electron-reload": "^1.2.2",
+    "font-awesome": "^4.7.0"
   }
 }

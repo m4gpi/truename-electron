@@ -1,6 +1,6 @@
 'use babel'
 import React from 'react'
-import { reviveFromShards } from '../actions/horcrux'
+import { assembleTrueName } from '../actions/truename'
 
 export default class RevivePage extends React.Component {
   constructor(props) {
@@ -42,9 +42,8 @@ export default class RevivePage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    var soul = reviveFromShards(this.state.shards.map(shard => shard.value))
+    var soul = assembleTrueName(this.state.shards.map(shard => shard.value))
     this.setState({ soul: soul })
-    console.log(soul)
   }
 
   render () {
@@ -70,7 +69,7 @@ export default class RevivePage extends React.Component {
           </div>
           <button onClick={ this.handleSubmit }>Reclaim your soul...</button>
         </form>
-        { soul }
+        { this.state.soul ? <TrueName /> : null}
       </div>
     )
   }
