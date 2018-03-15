@@ -1,4 +1,3 @@
-'use babel'
 import React from 'react'
 
 export default class Input extends React.Component {
@@ -10,7 +9,7 @@ export default class Input extends React.Component {
     return (
       <div className="input">
         <label htmlFor={ this.props.name }>{ this.props.label }</label>
-        <input name={ this.props.name } type={ this.props.type } onChange={ this.props.onChange }/>
+        <input id={ this.props.id } disabled={ this.props.disabled } name={ this.props.name } type={ this.props.type } onChange={ this.props.onChange }/>
       </div>
     )
   }

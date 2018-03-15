@@ -1,4 +1,3 @@
-'use babel'
 import React from 'react'
 
 export default class Button extends React.Component {
@@ -7,8 +6,9 @@ export default class Button extends React.Component {
   }
 
   render () {
+    var classes = this.props.classNames || "button button-primary"
     return (
-      <button onClick={ this.props.onClick }>{ this.props.label }</button>
+      <button className={ classes } onClick={ this.props.onClick }>{ this.props.label }</button>
     )
   }
 }

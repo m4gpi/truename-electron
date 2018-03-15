@@ -2,14 +2,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
-
-import App from './containers/App'
+import Routes from './routes'
 
 window.onload = function(){
   ReactDOM.render(
     (
       <HashRouter>
-        <App/>
+        <Routes />
       </HashRouter>
     ),
     document.getElementById('app')

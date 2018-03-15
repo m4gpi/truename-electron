@@ -1,4 +1,3 @@
-'use babel'
 import React from 'react'
 
 export default class Piece extends React.Component {
@@ -8,7 +7,7 @@ export default class Piece extends React.Component {
 
   render () {
     return (
-      <p>{ this.props.content }</p>
+      <h4>{ this.props.content }</h4>
     )
   }
 }
